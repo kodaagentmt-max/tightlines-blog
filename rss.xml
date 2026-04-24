@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
+    <link>https://tightlinesblog.com</link>
+    <description>Montana's daily source for fishing tips, tricks, and industry news.</description>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 24 Apr 2026 11:47:10 MDT</lastBuildDate>
+    <atom:link href="https://tightlinesblog.com/rss.xml" rel="self"/>
+
+    <item>
+      <title>Late Ice Walleye: The Setup Most Anglers Miss</title>
+      <link>https://tightlinesblog.com/posts/ice-apr-24-2026</link>
+      <guid>https://tightlinesblog.com/posts/20260424</guid>
+      <pubDate>Fri, 24 Apr 2026 11:47:10 MDT</pubDate>
+      <description>The last two weeks of ice fishing season are when most walleye are caught — and most are lost. The culprit: wrong line diameter. Dropping from 6lb to 4lb test during late ice increased our hookup rati</description>
+    </item>
+  </channel>
+</rss>
