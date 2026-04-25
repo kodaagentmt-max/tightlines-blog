@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tight Lines Tackle Box — Solunar Fishing Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0a1628; --card: #0f2847; --water: #1a4a7a; --accent: #00d4aa; --gold: #ffd700; --white: #fff; --dim: #7a9cc6; --text: #c8dff5; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Roboto Slab', serif; line-height: 1.7; min-height: 100vh; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--gold); }
+    .top-bar { background: var(--card); border-bottom: 2px solid var(--water); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .top-bar .brand { font-family: 'Special Elite', cursive; font-size: 18px; color: var(--accent); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+    .section-title { font-family: 'Special Elite', cursive; font-size: 22px; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--water); }
+    .legend { display: flex; gap: 16px; margin-bottom: 16px; font-size: 12px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-hi { background: #00d4aa; }
+    .dot-med { background: #ffd700; }
+    .dot-lo { background: #c0392b; }
+    .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+    .day-header { font-size: 11px; color: var(--dim); text-align: center; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 6px; }
+    .day-card { background: var(--card); border: 1px solid var(--water); border-radius: 6px; padding: 10px 8px; cursor: pointer; transition: all 0.2s; min-height: 110px; position: relative; }
+    .day-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .day-card.today { border-color: var(--gold); }
+    .day-card .day-num { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .day-card.today .day-num { color: var(--gold); }
+    .day-card .moon { font-size: 14px; text-align: center; margin-bottom: 4px; }
+    .day-card .activity { font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 3px; text-align: center; }
+    .act-hi { background: rgba(0,212,170,0.2); color: #00d4aa; }
+    .act-md { background: rgba(255,215,0,0.2); color: #ffd700; }
+    .act-lo { background: rgba(192,57,43,0.2); color: #e74c3c; }
+    .act-ex { background: rgba(0,212,170,0.4); color: #00ffb8; border: 1px solid #00d4aa; }
+    .day-card .times { font-size: 9px; color: var(--dim); margin-top: 4px; display: none; }
+    .day-card.open .times { display: block; }
+    .day-card.open { grid-column: span 2; }
+    .day-detail { background: var(--bg); border: 1px solid var(--water); border-radius: 6px; padding: 16px; margin-top: 8px; display: none; }
+    .day-detail.show { display: block; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .detail-item { background: var(--card); padding: 10px; border-radius: 5px; }
+    .detail-item label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); display: block; margin-bottom: 4px; }
+    .detail-item span { font-size: 14px; color: var(--white); }
+    .detail-legend { display: flex; gap: 16px; font-size: 11px; color: var(--dim); }
+    .detail-section { margin-top: 12px; }
+    .detail-section h4 { font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .time-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--water); font-size: 13px; }
+    .time-row:last-child { border-bottom: none; }
+    .time-row .period { color: var(--white); }
+    .time-row .hour { color: var(--gold); font-weight: 700; }
+    .close-detail { font-size: 11px; color: var(--dim); cursor: pointer; float: right; }
+    .close-detail:hover { color: var(--accent); }
+    footer { text-align: center; padding: 30px; border-top: 1px solid var(--water); color: var(--dim); font-size: 13px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="brand">🐟 Tight Lines Tackle Box</div>
+    <a href="index.html">← Back to Blog</a>
+  </div>
+
+  <div class="container">
+    <div class="section-title">🗓️ Solunar Fishing Calendar — April 2026</div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="dot dot-hi"></div> Excellent (9-10)</div>
+      <div class="legend-item"><div class="dot dot-med"></div> Good (6-8)</div>
+      <div class="legend-item"><div class="dot dot-lo"></div> Slow (3-5)</div>
+      <span style="color:var(--dim);font-size:11px;">Click any day for feeding times • Data for ~45°N, 110°W (Mountain Time)</span>
+    </div>
+
+    <div class="month-grid" id="calendar"></div>
+
+    <div id="detail" class="day-detail"></div>
+
+    <div class="detail-legend" style="margin-top:16px;">
+      <span>Major = Peak feeding periods (moon overhead/underfoot)</span>
+      <span>Minor = Secondary feeding (moonrise/moonset)</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>🐟 Tight Lines Tackle Box — Solunar times are approximations. Verify with local conditions.</p>
+  </footer>
+
+<script>
+// === Solunar Data Generation ===
+const MOON_CYCLE = 29.53058867;
+const KNOWN_NEW_MOON = new Date('2000-01-06');
+const TZ = -7;
+
+function getMoonPhase(date) {
+  const days = (date - KNOWN_NEW_MOON) / 86400000;
+  return (days % MOON_CYCLE) / MOON_CYCLE;
+}
+
+function moonName(phase) {
+  const n = Math.floor(phase * 8) % 8;
+  return ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘'][n];
+}
+
+function fmt(h) {
+  const hh = Math.floor(h), mm = Math.round((h - hh) * 60);
+  return `${hh % 12 || 12}:${mm.toString().padStart(2,'0')} ${h >= 12 ? 'PM' : 'AM'}`;
+}
+
+function lunarTransit(date, lon) {
+  const days = (date - KNOWN_NEW_MOON) / 86400000;
+  return (20 + ((days % MOON_CYCLE) / MOON_CYCLE) * 24 - lon / 15) % 24;
+}
+
+function sunriseSunset(lat, lon, date) {
+  const latR = lat * Math.PI / 180;
+  const doy = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+  const decl = 23.45 * Math.sin(2 * Math.PI * (284 + doy) / 365) * Math.PI / 180;
+  const cosH = -Math.tan(latR) * Math.tan(decl);
+  const hDeg = cosH < -1 ? 180 : cosH > 1 ? 0 : Math.acos(cosH) * 180 / Math.PI;
+  const noon = 12 - lon / 15;
+  return {
+    sr: ((noon - hDeg / 15 + TZ) % 24 + 24) % 24,
+    ss: ((noon + hDeg / 15 + TZ) % 24 + 24) % 24
+  };
+}
+
+function activity(phase, major, sr, ss) {
+  const ps = 1 - Math.abs(phase - 0.5) * 2;
+  const al = major.filter(m => Math.abs(m - sr) < 1.5 || Math.abs(m - ss) < 1.5).length;
+  return Math.min(10, Math.round(ps * 6 + al * 1.5 + 3));
+}
+
+// Generate 30-day calendar
+const today = new Date('2026-04-25');
+const cal = [];
+
+for (let i = 0; i < 30; i++) {
+  const d = new Date(today);
+  d.setDate(today.getDate() + i);
+  const phase = getMoonPhase(d);
+  const { sr, ss } = sunriseSunset(45.5, -110, d);
+  const lt = lunarTransit(d, -110);
+  const major = [(lt + TZ) % 24, (lt + 12.42 + TZ) % 24].sort((a,b)=>a-b);
+  const minor = [(major[0] + 6) % 24, (major[1] + 6) % 24].sort((a,b)=>a-b);
+  const act = activity(phase, major, sr, ss);
+  cal.push({
+    date: d.toISOString().split('T')[0],
+    day: d.getDate(),
+    month: d.toLocaleString('en-US', {month:'short'}),
+    moon: moonName(phase),
+    illum: Math.round(Math.abs(phase - 0.5) * 200),
+    sr, ss, major, minor, act
+  });
+}
+
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTH_START = 3; // April 25 = Wednesday = index 3 in weekday cycle
+
+function actClass(a) {
+  if (a >= 9) return 'act-ex';
+  if (a >= 6) return 'act-hi';
+  if (a >= 3) return 'act-md';
+  return 'act-lo';
+}
+
+let openDate = null;
+
+function render() {
+  const grid = document.getElementById('calendar');
+  const detail = document.getElementById('detail');
+  
+  // Day headers
+  let html = DAYS.map(d => `<div class="day-header">${d}</div>`).join('');
+  
+  // Pad start
+  for (let i = 0; i < MONTH_START; i++) {
+    html += '<div></div>';
+  }
+  
+  cal.forEach(day => {
+    const isOpen = openDate === day.date;
+    html += `<div class="day-card${day.date === '2026-04-25' ? ' today' : ''}${isOpen ? ' open' : ''}" onclick="toggle('${day.date}')">
+      <div class="day-num">${day.day}</div>
+      <div class="moon">${day.moon}</div>
+      <div class="activity ${actClass(day.act)}">${day.act}/10</div>
+      <div class="times">Major: ${fmt(day.major[0])} &amp; ${fmt(day.major[1])}</div>
+    </div>`;
+  });
+  
+  grid.innerHTML = html;
+  
+  if (openDate) {
+    const d = cal.find(c => c.date === openDate);
+    if (d) {
+      detail.className = 'day-detail show';
+      detail.innerHTML = `
+        <span class="close-detail" onclick="closeDetail()">✕ close</span>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px;">${d.month} ${d.day}, 2026 — Activity: ${d.act}/10</div>
+        <div style="font-size:13px;color:var(--dim);margin-bottom:16px;">${d.moon} ${d.illum}% illuminated</div>
+        <div class="detail-grid">
+          <div class="detail-item"><label>🌅 Sunrise</label><span>${fmt(d.sr)}</span></div>
+          <div class="detail-item"><label>🌇 Sunset</label><span>${fmt(d.ss)}</span></div>
+        </div>
+        <div class="detail-section">
+          <h4>🐟 Major Feeding Periods</h4>
+          <div class="time-row"><span class="period">🌙 Moon overhead</span><span class="hour">${fmt(d.major[0])}</span></div>
+          <div class="time-row"><span class="period">🌑 Moon underfoot</span><span class="hour">${fmt(d.major[1])}</span></div>
+        </div>
+        <div class="detail-section">
+          <h4>🪤 Minor Feeding Periods</h4>
+          <div class="time-row"><span class="period">🌅 Moonrise</span><span class="hour">${fmt(d.minor[0])}</span></div>
+          <div class="time-row"><span class="period">🌃 Moonset</span><span class="hour">${fmt(d.minor[1])}</span></div>
+        </div>
+      `;
+    }
+  } else {
+    detail.className = 'day-detail';
+  }
+}
+
+function toggle(date) {
+  openDate = openDate === date ? null : date;
+  render();
+}
+
+function closeDetail() {
+  openDate = null;
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
