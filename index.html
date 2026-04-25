@@ -73,6 +73,17 @@
 
     .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
 
+    .hero-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 16px auto 0;
+      display: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .hero-img.visible { display: block; }
+
     /* HERO */
     .hero {
       text-align: center;
@@ -311,6 +322,7 @@
     <div class="hero">
       <h1>🎣 Tight Lines Tackle Box</h1>
       <p class="tagline">Montana's daily source for fishing tips, tricks, and industry news</p>
+      <img id="heroImg" class="hero-img" alt="Today's fishing scene">
       <div class="stats">
         <div class="stat"><div class="stat-num">365</div>Tips & Tricks</div>
         <div class="stat"><div class="stat-num">52</div>Weekly News</div>
@@ -385,21 +397,62 @@
   </footer>
 
 <script>
-// TODAY'S TIP — pulled from the daily agent
-const TODAY_TIP = {
-  title: "Why Overcast Days Are the Best Days to Fish",
-  body: "Most anglers pack up when clouds roll in. Big mistake. Overcast skies diffuse sunlight, reducing visibility in the water — which means fish feel safer coming to the surface and are more likely to feed aggressively. Combined with lower barometric pressure that triggers feeding instincts, cloudy days can be your best bet for a big catch. Pack light, stay patient, and work your lures slower than usual.",
+// TODAY'S TIP — loaded dynamically from posts.json via loadPosts()
+let TODAY_TIP = {
+  title: "Loading today's tip...",
+  body: "",
   author: "— Tight Lines Daily Agent",
   date: new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
 };
 
-document.getElementById('tipTitle').textContent = TODAY_TIP.title;
-document.getElementById('tipText').textContent = TODAY_TIP.body;
-document.getElementById('tipAuthor').textContent = TODAY_TIP.author;
-document.getElementById('tipDate').textContent = '📅 ' + TODAY_TIP.date;
+function renderTodayTip() {
+  document.getElementById('tipTitle').textContent = TODAY_TIP.title;
+  document.getElementById('tipText').textContent = TODAY_TIP.body;
+  document.getElementById('tipAuthor').textContent = TODAY_TIP.author;
+  document.getElementById('tipDate').textContent = '📅 ' + TODAY_TIP.date;
+  // Update hero image if photo available
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg && TODAY_TIP.photo) {
+    heroImg.src = TODAY_TIP.photo.url;
+    heroImg.style.display = 'block';
+  }
+}
 
-// BLOG POSTS — populated from local storage or static
-const POSTS = [
+// BLOG POSTS — loaded dynamically from posts.json
+let POSTS = [];
+
+async function loadPosts() {
+  try {
+    const res = await fetch('posts/posts.json');
+    if (res.ok) {
+      const data = await res.json();
+      POSTS = data.map(p => ({
+        tag: p.tag,
+        emoji: p.emoji,
+        title: p.title,
+        excerpt: p.body ? p.body.slice(0, 130) + '...' : '',
+        date: p.date,
+        category: p.category,
+        photo: p.photo,
+        body: p.body
+      }));
+      // Set TODAY_TIP from latest post
+      if (data.length) {
+        const latest = data[0];
+        TODAY_TIP.title = latest.title;
+        TODAY_TIP.body = latest.body;
+        TODAY_TIP.photo = latest.photo || null;
+      }
+    }
+  } catch(e) {
+    console.warn('Could not load posts.json, using static fallback');
+  }
+  if (!POSTS.length) {
+    POSTS = STATIC_POSTS;
+  }
+  renderTodayTip();
+  renderPosts();
+}
   {
     tag: 'Fishing Tips',
     emoji: '🔧',
@@ -454,14 +507,14 @@ function renderPosts() {
   const grid = document.getElementById('postsGrid');
   grid.innerHTML = POSTS.map(p => `
     <div class="post-card">
-      <div class="post-thumb">${p.emoji}</div>
+      <div class="post-thumb">${p.photo ? `<img src="${p.photo.thumb}" alt="${p.photo.alt}" style="width:100%;height:100%;object-fit:cover;">` : p.emoji}</div>
       <div class="post-body">
         <div class="post-tag">${p.tag}</div>
         <a class="post-title" href="/posts/${p.category}-${p.date.replace(/[ ,]/g,'-').toLowerCase()}">${p.title}</a>
-        <p class="post-excerpt">${p.excerpt}</p>
+        <p class="post-excerpt">${p.excerpt || (p.body ? p.body.slice(0,120) + '...' : '')}</p>
         <div class="post-meta">
           <span>📅 ${p.date}</span>
-          <span>📖 Read more →</span>
+          <span>${p.photo ? '📷 Photo: ' + p.photo.photographer : ''}</span>
         </div>
       </div>
     </div>
