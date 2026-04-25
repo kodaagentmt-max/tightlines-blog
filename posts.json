@@ -1,0 +1,23 @@
+[
+  {
+    "id": "20260425",
+    "date": "April 25, 2026",
+    "slug": "tips-april-25-2026",
+    "tag": "Fishing Tips",
+    "emoji": "\ud83c\udf24\ufe0f",
+    "title": "Why Overcast Days Are the Best Days to Fish",
+    "body": "Most anglers pack up when clouds roll in. Big mistake. Overcast skies diffuse sunlight, reducing visibility in the water \u2014 which means fish feel safer coming to the surface and are more likely to feed aggressively. Combined with lower barometric pressure that triggers feeding instincts, cloudy days can be your best bet for a big catch.",
+    "category": "tips",
+    "pexels_query": "overcast river fishing mountains",
+    "news_blurb": "The Missouri River below Fort Peck is running high but clear \u2014 producing solid walleye numbers in the tailrace.",
+    "photo": {
+      "url": "https://images.pexels.com/photos/18569731/pexels-photo-18569731.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "thumb": "https://images.pexels.com/photos/18569731/pexels-photo-18569731.jpeg?auto=compress&cs=tinysrgb&h=350",
+      "original": "https://images.pexels.com/photos/18569731/pexels-photo-18569731.jpeg",
+      "photographer": "ouyang shadow",
+      "alt": "Fisherman casting net on a foggy lake surrounded by lush mountains.",
+      "local_path": "posts/img-20260425.jpg"
+    },
+    "local_path": "posts/img-20260425.jpg"
+  }
+]
