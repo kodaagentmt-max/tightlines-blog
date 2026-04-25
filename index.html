@@ -413,9 +413,9 @@ function renderTodayTip() {
   // Update hero image if photo available
   const heroImg = document.getElementById('heroImg');
   if (heroImg && TODAY_TIP.photo) {
-    heroImg.src = `images/post-${data[0].id}.jpg`;
-    heroImg.onerror = function() { heroImg.style.display = 'none'; };
-    heroImg.style.display = 'block';
+      heroImg.src = `images/post-${data[0].id}.jpg`;
+      heroImg.onerror = function() { heroImg.style.display = 'none'; };
+      heroImg.style.display = 'block';
   }
 }
 
@@ -428,6 +428,7 @@ async function loadPosts() {
     if (res.ok) {
       const data = await res.json();
       POSTS = data.map(p => ({
+        id: p.id,
         tag: p.tag,
         emoji: p.emoji,
         title: p.title,
@@ -435,6 +436,7 @@ async function loadPosts() {
         date: p.date,
         category: p.category,
         photo: p.photo,
+        local_photo: p.local_photo || (p.photo ? `images/post-${p.id}.jpg` : null),
         body: p.body
       }));
       // Set TODAY_TIP from latest post
@@ -494,7 +496,7 @@ function renderPosts() {
   const grid = document.getElementById('postsGrid');
   grid.innerHTML = POSTS.map(p => `
     <div class="post-card">
-      <div class="post-thumb">${p.photo ? `<img src="images/${p.id ? 'post-' + p.id + '.jpg' : ''}" alt="${p.photo.alt || ''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex');"><span style="display:none;font-size:32px;">${p.emoji}</span>` : p.emoji}</div>
+      <div class="post-thumb">${p.local_photo ? `<img src="${p.local_photo}" alt="${p.photo?.alt || ''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex');"><span style="display:none;font-size:32px;">${p.emoji}</span>` : p.emoji}</div>
       <div class="post-body">
         <div class="post-tag">${p.tag}</div>
         <a class="post-title" href="/posts/${p.category}-${p.date.replace(/[ ,]/g,'-').toLowerCase()}">${p.title}</a>
