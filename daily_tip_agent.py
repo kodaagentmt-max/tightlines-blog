@@ -19,7 +19,7 @@ FISHING_TIPS = [
         "tag": "Fishing Tips",
         "emoji": "🌤️",
         "title": "Why Overcast Days Are the Best Days to Fish",
-        "body": "Most anglers pack up when clouds roll in. Big mistake. Overcast skies diffuse sunlight, reducing visibility in the water — which means fish feel safer coming to the surface and are more likely to feed aggressively. Combined with lower barometric pressure that triggers feeding instincts, cloudy days can be your best bet for a big catch.",
+        "body": "Most anglers pack up their rods and head home when clouds roll in. This is one of the most costly mistakes in fishing. Overcast skies do several things that make fish feed more aggressively: First, they diffuse direct sunlight, reducing visibility underwater so fish feel safer prowling the shallows. Second, cloud cover typically coincides with dropping barometric pressure — a trigger that activates feeding instincts in nearly all freshwater fish. Third, choppy water from subtle winds breaks up the surface silhouette, making fish less line-shy. Next time dark clouds gather, stay on the water. Fish the mid-morning hours when clouds are thickest, focus on points and shallow flats, and try slower presentations — the fish will be hungry and bold.",
         "category": "tips",
         "pexels_query": "overcast river fishing mountains"
     },
@@ -27,23 +27,23 @@ FISHING_TIPS = [
         "tag": "Fishing Tips",
         "emoji": "⏱️",
         "title": "The 3-Second Rule for Lure Retrieval",
-        "body": "Most anglers retrieve too fast. Try pausing your lure for 3 full seconds at the end of each strip. Fish often strike on the pause, not the retrieve. This single change to your technique can double your hookup rate on sluggish fish.",
+        "body": "Retrieval speed is the most overlooked variable in fishing. Most anglers strip way too fast, yanking the fly or lure past the fish's strike zone. The fix is deceptively simple: pause for a full 3 seconds after every strip. This gives the fly time to sink, drift naturally, and trigger the predatory strike instinct — especially in cold water or when fish are sluggish. The pause also lets you feel the subtle, almost imperceptible bite that happens when the fish isn't committed. Once you start counting 'one-Mississippi' pauses, you'll notice hookups that you were previously missing entirely. Pro tip: count the pause out loud so you don't rush it. After 30 days of practice, this becomes muscle memory.",
         "category": "tips",
         "pexels_query": "fishing lure water close up"
     },
     {
-        "tag": "Montana Fishing",
+        "tag": "Regional Fishing",
         "emoji": "🏔️",
         "title": "Spring Runoff: Where to Fish When the Rivers Are High",
-        "body": "Spring runoff turns most Montana rivers chocolate-milk brown. But the tailwaters and spring creeks that stay clear — like the Jefferson, Madison, and the lower legs of Spring Creek — produce consistently during runoff.",
+        "body": "Spring runoff turns most rivers chocolate-milk brown. But the tailwaters and spring creeks that stay clear — like the Jefferson, Madison, and other clear spring creeks — produce consistently during runoff.",
         "category": "montana",
         "pexels_query": "montana river spring runoff fly fishing"
     },
     {
         "tag": "Gear Reviews",
         "emoji": "🪝",
-        "title": "The Best Fluorocarbon Leaders for Montana Waters",
-        "body": "After testing 12 fluorocarbon leaders on our local rivers, three stood out: Seaguar InvizX for its knot strength, Pure Fluorocarbon for sensitivity in cold water, and Berkley Vanish for the best value.",
+        "title": "The Best Fluorocarbon Leaders for Your Waters",
+        "body": "After testing 12 fluorocarbon leaders in local rivers, three stood out: Seaguar InvizX for its knot strength, Pure Fluorocarbon for sensitivity in cold water, and Berkley Vanish for the best value.",
         "category": "gear",
         "pexels_query": "fishing gear tackle box flourocarbon"
     },
@@ -51,7 +51,7 @@ FISHING_TIPS = [
         "tag": "Fly Fishing",
         "emoji": "🪰",
         "title": "The Mysis Shrimp Impostor That Outfishes the Real Thing",
-        "body": "Why most anglers tie the Mysis shrimp pattern wrong — and the two modifications that have consistently outfished the standard pattern on Hebgen Lake. Hint: it is all about the collar angle and the bead placement.",
+        "body": "The Mysis shrimp is one of the most important patterns for stillwater fishing, particularly for feeding rainbows and browns in lakes with significant invertebrate populations. But most anglers tie it wrong in two critical ways that cost them fish. First, the collar angle: the hackle fibers should be tied at a 45-degree backward angle, not swept back. This gives the pattern a swimming motion on the retrieve that mimics a swimming shrimp — not a dying one. Second, bead placement: the tungsten bead should be positioned at the front of the hook shank, not centered, to keep the pattern riding hook-point-up. This prevents foul-ups and ensures better bottom contact. tying the pattern with these two adjustments will immediately set you apart from most anglers on the water.",
         "category": "fly",
         "pexels_query": "fly fishing river trout wet fly"
     },
@@ -59,15 +59,15 @@ FISHING_TIPS = [
         "tag": "Ice Fishing",
         "emoji": "🧊",
         "title": "Late Ice Walleye: The Setup Most Anglers Miss",
-        "body": "The last two weeks of ice fishing season are when most walleye are caught — and most are lost. The culprit: wrong line diameter. Dropping from 6lb to 4lb test during late ice increased our hookup ratio by 40%.",
+        "body": "Late ice is the most underutilized opportunity in fishing. Most anglers have already put their gear away, but the last two weeks of ice produce some of the best walleye action of the entire year. The key adjustment most anglers miss is line diameter. As ice thins and light penetrates deeper water, walleye become line-shy — they see the main line and become cautious. Dropping from 6lb to 4lb test fluorocarbon makes a dramatic difference in bite detection and hookup rates. You'll feel subtle strikes that would previously be masked, and the thinner diameter sinks faster, keeping your presentation in the strike zone longer. Additionally, downsizing your jig from 3/8oz to 1/4oz matches the more subtle feeding window of late-season walleye. Combine both and your ratio climbs dramatically.",
         "category": "ice",
         "pexels_query": "ice fishing winter frozen lake walleye"
     },
     {
         "tag": "Industry News",
         "emoji": "📰",
-        "title": "Montana FWP Proposes New Cutthroat Protection Zones",
-        "body": "The proposed regulations would close 14 miles of the Yellowstone River to protect native westslope cutthroat. Public comment period ends May 15. If you fish the Yellowstone, now is the time to make your voice heard.",
+        "title": "FWP Proposes New Cutthroat Protection Zones",
+        "body": "The proposed regulations would close 14 miles of the Yellowstone to protect native westslope cutthroat. Public comment period ends May 15. If you fish the Yellowstone, now is the time to make your voice heard.",
         "category": "news",
         "pexels_query": "yellowstone river montana fly fishing"
     },
@@ -75,15 +75,15 @@ FISHING_TIPS = [
         "tag": "Fishing Tips",
         "emoji": "🌡️",
         "title": "Water Temperature: The Number Every Serious Angler Tracks",
-        "body": "Fish are cold-blooded — their metabolism is directly tied to water temperature. Below 40°F, trout feed only occasionally. Between 45-55°F, feeding increases dramatically. Above 65°F, trout metabolism spikes but oxygen drops.",
+        "body": "Understanding water temperature is the single most powerful tool in fishing. Fish are cold-blooded, meaning their metabolic rate is governed entirely by the temperature of the water around them. Below 40°F, trout become sluggish, feeding only sporadically as their bodies slow. Between 45-55°F, everything changes — digestion accelerates, aggressive feeding behavior kicks in, and fish actively patrol rather than holding static. Above 65°F, things get complicated: metabolism continues climbing but oxygen saturation in water drops precipitously, creating a situation where fish are hungry but physically limited in their ability to process food. Knowing the temperature of the water you're fishing tells you what retrieval speed to use, where fish will position in the water column, and what patterns will trigger response. Carry a simple thermometer and log your catches — the pattern data over time is invaluable.",
         "category": "tips",
         "pexels_query": "thermometer fishing tackle water"
     },
     {
-        "tag": "Montana Fishing",
+        "tag": "Regional Fishing",
         "emoji": "🌊",
         "title": "Reading River Currents: The Key Eddy Every Angler Should Find",
-        "body": "Every river has them — calm pockets of slow water directly downstream from a rock or bend. Fish stack in these eddies because food collects there and the current is easier to hold in.",
+        "body": "Eddy formation is one of the most fundamental concepts in river fishing, and mastering it separates consistently productive anglers from the casual crowd. An eddy forms when current hits an obstruction — a rock, a submerged log, a river bend — and creates a circular flow pattern on the downstream side. The water in this circulation is calmer, food particles collect there naturally, and fish can hold position with minimal energy expenditure. Reading a river for eddies means looking for any change in the banks or bottom topography that interrupts the current. The largest, most patient fish typically hold in the deepest part of the eddy, not the obvious tail-out area. Cast upstream of the eddy and let your fly or lure drift naturally into the current seam — this is where most productive takes occur, right at the boundary between the circulating water and the main current.",
         "category": "montana",
         "pexels_query": "river eddy calm water fishing rapids"
     },
@@ -91,7 +91,7 @@ FISHING_TIPS = [
         "tag": "Tournament Updates",
         "emoji": "🏆",
         "title": "Spring Classic Recap: New Pattern Emerged as Key",
-        "body": "The winning pattern at last weekend's Spring Classic on Fort Peck was a simple olive Wooly Bugger fished on a 7-weight sink tip, stripped in 4-inch bursts. Water temperature was the deciding factor.",
+        "body": "The winning pattern at last weekend's Spring Classic on major reservoirs was a simple olive Wooly Bugger fished on a 7-weight sink tip, stripped in 4-inch bursts. Water temperature was the deciding factor.",
         "category": "tournament",
         "pexels_query": "fishing tournament awards trophy winner"
     },
@@ -99,7 +99,7 @@ FISHING_TIPS = [
 
 NEWS_ITEMS = [
     "Montana Fish Wildlife and Parks announced extended fishing hours on three Madison River segments starting May 1.",
-    "New regulations for 2026: Montana will require barbless hooks on all catch-and-release water starting next season.",
+    "New catch-and-release regulations for 2026 will require barbless hooks on designated water — check your state regulations for specific waterways affected.",
     "Hebgen Lake is now ice-free. Anglers are reporting good catches of brown trout near the incoming channels.",
     "The Missouri River below Fort Peck is running high but clear — producing solid walleye numbers in the tailrace.",
     "Crowded boat ramps are the top complaint at Montana state parks. FWP is piloting a new reservation system for seven high-traffic ramps this summer.",
@@ -201,7 +201,7 @@ def generate_index_html(posts):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎣 Tight Lines Tackle Box — Daily Fishing Tips</title>
-  <meta name="description" content="Montana's daily source for fishing tips, tricks, and industry news.">
+  <meta name="description" content="Daily fishing tips, tricks, and industry news.">
   <link rel="alternate" type="application/rss+xml" title="Tight Lines RSS" href="rss.xml">
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -238,7 +238,7 @@ def generate_index_html(posts):
   <div class="container">
     <div class="hero">
       <h1>🎣 Tight Lines Tackle Box</h1>
-      <p class="tagline">Montana's daily source for fishing tips, tricks, and industry news</p>
+      <p class="tagline">Daily fishing tips, tricks, and industry news</p>
     </div>
     <div class="section-title">📖 Latest Tips & News</div>
     <div class="posts-grid">
@@ -246,7 +246,7 @@ def generate_index_html(posts):
     </div>
   </div>
   <footer>
-    <p>🎣 Tight Lines Tackle Box — Montana's source for outdoor fishing knowledge since 2024</p>
+    <p><img src="images/tagsoup-logo.png" alt="Tight Lines" style="height:28px;vertical-align:middle;"> Tight Lines Tackle Box — Your source for outdoor fishing knowledge since 2024</p>
   </footer>
 </body>
 </html>"""
@@ -333,7 +333,7 @@ def run():
   <channel>
     <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
     <link>https://tightlinesblog.com</link>
-    <description>Montana's daily source for fishing tips, tricks, and industry news.</description>
+    <description>Daily fishing tips, tricks, and industry news.</description>
     <language>en-US</language>
 {items_xml}
   </channel>
