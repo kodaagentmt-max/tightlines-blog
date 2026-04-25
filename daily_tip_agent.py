@@ -12,7 +12,25 @@ from pathlib import Path
 
 BLOG_DIR = Path("/home/kodaagentmt/.openclaw/workspace/projects/tightlines-blog")
 POSTS_DIR = BLOG_DIR / "posts"
+IMAGES_DIR = BLOG_DIR / "images"
 PEXELS_KEY = "YkKkFXmfk334l9uKq8iPBnzoaFcvJOTbnAhO1awjRudPTOfJWX1BAKZE"
+
+# Pre-approved image library — vetted by KC
+APPROVED_IMAGES = [
+    "13740880", "4376190", "4343735", "13740883", "4830329", "7454998", "14062103", "10112459",  # Bass fish
+    "6478088", "4822241", "4822301", "6478099", "6478171", "14339533", "6478199", "4822245",       # Lures
+    "294674", "14339521", "4828161", "1165125", "26690286", "10922533", "5537642", "31910643",     # Fishermen
+]
+
+def get_approved_photo():
+    """Pick a random approved image and return a photo dict."""
+    chosen_id = random.choice(APPROVED_IMAGES)
+    return {
+        "url": f"https://kodaagentmt-max.github.io/tightlines-blog/images/approved_{chosen_id}.jpg",
+        "local_path": f"../images/approved_{chosen_id}.jpg",
+        "photographer": "Pexels",
+        "alt": "Fishing photography"
+    }
 
 FISHING_TIPS = [
     {
@@ -273,26 +291,10 @@ def run():
     date_str = datetime.now().strftime("%B %d, %Y")
     slug = f"{tip['category']}-{date_str.replace(' ', '-').replace(',','').lower()}"
 
-    # Fetch photo
-    print(f"  Fetching Pexels image: {tip['pexels_query']}")
-    photo = fetch_pexels_image(tip["pexels_query"])
-
-    # Download photo locally
-    local_path = None
-    if photo:
-        img_path = POSTS_DIR / f"img-{today_id}.jpg"
-        try:
-            req = urllib.request.Request(photo["thumb"], headers={"User-Agent": "TightLinesBlog/1.0"})
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                data = resp.read()
-            with open(img_path, 'wb') as f:
-                f.write(data)
-            local_path = f"posts/img-{today_id}.jpg"
-            photo["local_path"] = local_path
-            print(f"  📷 Downloaded: {img_path.name} ({len(data)} bytes)")
-        except Exception as e:
-            print(f"  ⚠ Failed to download photo: {e}")
-            photo = None
+    # Use pre-approved image — no Pexels API call needed
+    print(f"  Using approved image from vetted library")
+    photo = get_approved_photo()
+    local_path = photo["local_path"]
 
     post_record = {
         "id": today_id,
