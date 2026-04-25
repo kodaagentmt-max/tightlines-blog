@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
-    <link>https://tightlinesblog.com</link>
-    <description>Montana's daily source for fishing tips, tricks, and industry news.</description>
+    <link>https://kodaagentmt-max.github.io/tightlines-blog/</link>
+    <description>Daily fishing tips, tackle breakdowns, and angling know-how from Tight Lines Tackle Box.</description>
     <language>en-US</language>
-    <lastBuildDate>Fri, 24 Apr 2026 18:46:07 MDT</lastBuildDate>
-    <atom:link href="https://tightlinesblog.com/rss.xml" rel="self"/>
+    <atom:link href="https://kodaagentmt-max.github.io/tightlines-blog/rss.xml" rel="self"/>
+    <lastBuildDate>Sat, 25 Apr 2026 11:00:00 MDT</lastBuildDate>
+
+    <item>
+      <title>Why Overcast Days Are the Best Days to Fish</title>
+      <link>https://kodaagentmt-max.github.io/tightlines-blog/posts/tips-april-25-2026.html</link>
+      <guid isPermaLink="true">https://kodaagentmt-max.github.io/tightlines-blog/posts/tips-april-25-2026.html</guid>
+      <pubDate>Sat, 25 Apr 2026 09:00:00 MDT</pubDate>
+      <description><![CDATA[Most anglers pack up when clouds roll in. This is one of the most costly mistakes in fishing. Overcast skies do several things that make fish feed more aggressively — and once you understand the science, you'll never quit fishing the clouds.]]></description>
+      <enclosure url="https://kodaagentmt-max.github.io/tightlines-blog/posts/img-20260425.jpg" type="image/jpeg" length="120000"/>
+      <media:content url="https://kodaagentmt-max.github.io/tightlines-blog/posts/img-20260425.jpg" type="image/jpeg" medium="image"/>
+    </item>
 
     <item>
       <title>Montana FWP Proposes New Cutthroat Protection Zones</title>
-      <link>https://tightlinesblog.com/posts/news-apr-24-2026</link>
-      <guid>https://tightlinesblog.com/posts/20260424</guid>
-      <pubDate>Fri, 24 Apr 2026 18:46:06 MDT</pubDate>
-      <description><![CDATA[<img src='https://images.pexels.com/photos/6738842/pexels-photo-6738842.jpeg?auto=compress&cs=tinysrgb&h=650&w=940' alt='Hands holding a box of colorful fishing lures, ready for angling adventure.' /><br />The proposed regulations would close 14 miles of the Yellowstone River to protect native westslope cutthroat. Public comment period ends May 15. If you fish the Yellowstone, now is the time to make your voice heard at the FWP website.]]></description>
+      <link>https://kodaagentmt-max.github.io/tightlines-blog/</link>
+      <guid isPermaLink="true">https://kodaagentmt-max.github.io/tightlines-blog/</guid>
+      <pubDate>Fri, 24 Apr 2026 18:46:00 MDT</pubDate>
+      <description><![CDATA[The proposed regulations would close 14 miles of prime fishing water to protect native fish populations. Public comment period ends May 15 — make your voice heard at the FWP website.]]></description>
+      <enclosure url="https://images.pexels.com/photos/6738842/pexels-photo-6738842.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" type="image/jpeg" length="120000"/>
+      <media:content url="https://images.pexels.com/photos/6738842/pexels-photo-6738842.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" type="image/jpeg" medium="image"/>
     </item>
   </channel>
 </rss>
