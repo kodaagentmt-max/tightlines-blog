@@ -453,8 +453,11 @@ async function loadPosts() {
   renderTodayTip();
   renderPosts();
 }
+
+// ===== STATIC FALLBACK POSTS =====
+const STATIC_POSTS = [
   {
-    tag: 'Fishing Tips',
+n    tag: 'Fishing Tips',
     emoji: '🔧',
     title: 'The 3-Second Rule for Lure Retrieval',
     excerpt: 'Most anglers retrieve too fast. Try pausing your lure for 3 full seconds at the end of each strip. Fish often strike on the pause, not the retrieve.',
@@ -465,7 +468,7 @@ async function loadPosts() {
     tag: 'Gear Reviews',
     emoji: '🪝',
     title: 'Best Fluorocarbon Leaders for Montana Waters',
-    excerpt: 'After testing 12 fluorocarbon leaders on our local rivers, here are the three that held up best against our abrasive rock beds and aggressive trout.',
+    excerpt: 'After testing 12 fluorocarbon leaders on our local rivers, here are the three that held up best.',
     date: 'Apr 22, 2026',
     category: 'gear'
   },
@@ -473,7 +476,7 @@ async function loadPosts() {
     tag: 'Montana Fishing',
     emoji: '🏔️',
     title: 'Spring Runoff: Where to Fish When the Rivers Are High',
-    excerpt: 'Spring runoff turns most Montana rivers chocolate-milk brown. Here are the tailwaters and spring creeks that stay clear — and produce — during runoff season.',
+    excerpt: 'Spring runoff turns most Montana rivers chocolate-milk brown. Here are the tailwaters that stay clear.',
     date: 'Apr 21, 2026',
     category: 'montana'
   },
@@ -481,28 +484,11 @@ async function loadPosts() {
     tag: 'Industry News',
     emoji: '📰',
     title: 'Montana FWP Proposes New Cutthroat Protection Zones',
-    excerpt: 'The proposed regulations would close 14 miles of the Yellowstone River to protect native westslope cutthroat. Public comment period ends May 15.',
+    excerpt: 'The proposed regulations would close 14 miles of the Yellowstone River to protect native westslope cutthroat.',
     date: 'Apr 20, 2026',
     category: 'news'
-  },
-  {
-    tag: 'Fly Fishing',
-    emoji: '🪰',
-    title: 'The Mysis Shrimp Impostor: A Better Pattern for Lake Trout',
-    excerpt: 'Why most anglers tie the Mysis wrong — and the two modifications that have consistently outfished the standard pattern in Hebgen Lake.',
-    date: 'Apr 19, 2026',
-    category: 'fly'
-  },
-  {
-    tag: 'Ice Fishing',
-    emoji: '🧊',
-    title: 'Late Ice Walleye: Setting Up for the Bite You Might Miss',
-    excerpt: 'The last two weeks of ice fishing season are when most walleye are caught — and most are lost. Here is the setup that changes everything.',
-    date: 'Apr 18, 2026',
-    category: 'ice'
-  },
+  }
 ];
-
 function renderPosts() {
   const grid = document.getElementById('postsGrid');
   grid.innerHTML = POSTS.map(p => `
@@ -528,7 +514,7 @@ function shareTwitter() {
   window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(TODAY_TIP.title + ' — via Tight Lines Tackle Box'), '_blank');
 }
 
-renderPosts();
+loadPosts();
 </script>
 </body>
 </html>
