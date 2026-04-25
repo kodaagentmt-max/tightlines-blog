@@ -165,7 +165,7 @@ def generate_post_html(tip, photo, news):
 </head>
 <body>
   <div class="container">
-    {"<img class='hero-img' src='../{photo['local_path']}' alt='{photo['alt']}'>" if photo else ""}
+    {f"<img class='hero-img' src='../{photo['local_path']}' alt='{photo['alt']}'>" if photo else ""}
     <div class="tag">{tip['tag']}</div>
     <h1>{tip['title']}</h1>
     <div class="date">📅 {date_str} — Tight Lines Daily Tip</div>
