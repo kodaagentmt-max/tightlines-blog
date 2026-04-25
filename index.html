@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
-  <meta name="description" content="Daily fishing tips, tricks, and industry news.">
+  <meta name="description" content="Daily fishing tips, tackle advice, and angling know-how.">
   <link rel="alternate" type="application/rss+xml" title="Tight Lines RSS" href="rss.xml">
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -15,119 +15,85 @@
     a:hover { color: var(--gold); }
     .top-bar { background: var(--card); border-bottom: 2px solid var(--water); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
     .top-bar .brand { font-family: 'Special Elite', cursive; font-size: 18px; color: var(--accent); }
-    .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-    .hero { text-align: center; padding: 30px 20px; margin-bottom: 30px; }
-    .hero h1 { font-family: 'Special Elite', cursive; font-size: 36px; color: var(--accent); margin-bottom: 8px; }
-    .hero .tagline { font-size: 15px; color: var(--dim); }
-    .solunar-section { margin-bottom: 36px; }
-    .solunar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+    .hero { text-align: center; padding: 60px 30px; background: linear-gradient(180deg, var(--card) 0%, var(--bg) 100%); border-bottom: 3px solid var(--accent); margin-bottom: 40px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 20\"><path d=\"M0 10 Q25 0 50 10 T100 10\" fill=\"none\" stroke=\"%231a4a7a\" stroke-width=\"0.5\" opacity=\"0.5\"/></svg>') repeat; opacity: 0.3; }
+    .hero .logo-wrap { font-size: 52px; margin-bottom: 10px; }
+    .hero h1 { font-family: 'Special Elite', cursive; font-size: 52px; color: var(--accent); margin-bottom: 6px; letter-spacing: 3px; position: relative; }
+    .hero .tagline { font-size: 17px; color: var(--gold); font-family: 'Special Elite', cursive; position: relative; }
+    .hero .tagline span { display: block; font-size: 12px; color: var(--dim); margin-top: 5px; letter-spacing: 2px; }
+    .solunar-section { margin-bottom: 40px; }
+    .solunar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .solunar-header h2 { font-family: 'Special Elite', cursive; font-size: 20px; color: var(--accent); }
     .solunar-link { font-size: 12px; color: var(--gold); border: 1px solid var(--gold); padding: 4px 10px; border-radius: 4px; }
     .solunar-link:hover { background: rgba(255,215,0,0.1); }
-    .solunar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    .sol-card { background: var(--card); border: 1px solid var(--water); border-radius: 8px; padding: 14px; text-align: center; }
-    .sol-card.major { border-color: var(--accent); }
-    .sol-card .sol-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); margin-bottom: 6px; }
-    .sol-card .sol-icon { font-size: 24px; margin-bottom: 4px; }
-    .sol-card .sol-time { font-size: 18px; font-weight: 700; color: var(--white); }
-    .sol-card .sol-label2 { font-size: 10px; color: var(--dim); margin-top: 2px; }
-    .sol-card .sol-note { font-size: 10px; color: var(--accent); margin-top: 4px; }
-    .solunar-bar { background: var(--card); border: 1px solid var(--water); border-radius: 8px; padding: 14px 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-    .solunar-bar .day-info { display: flex; align-items: center; gap: 14px; }
-    .solunar-bar .moon-info { font-size: 22px; }
+    .solunar-bar { background: var(--card); border: 1px solid var(--water); border-radius: 8px; padding: 14px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .solunar-bar .day-info { display: flex; align-items: center; gap: 12px; }
+    .solunar-bar .moon-info { font-size: 20px; }
     .solunar-bar .day-text { font-size: 13px; color: var(--white); }
     .solunar-bar .day-text .date { color: var(--dim); font-size: 11px; }
-    .solunar-bar .activity-badge { font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+    .solunar-bar .activity-badge { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
     .act-excellent { background: rgba(0,212,170,0.2); color: #00d4aa; }
-    .act-good { background: rgba(255,215,0,0.2); color: #ffd700; }
-    .act-slow { background: rgba(192,57,43,0.2); color: #e74c3c; }
-    .times-strip { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .time-chip { background: var(--bg); border: 1px solid var(--water); border-radius: 4px; padding: 4px 8px; font-size: 11px; }
+    .times-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+    .time-chip { background: var(--bg); border: 1px solid var(--water); border-radius: 4px; padding: 5px 10px; font-size: 11px; }
     .time-chip .lbl { color: var(--dim); font-size: 9px; }
     .time-chip .tm { color: var(--gold); font-weight: 700; }
-    .section-title { font-family: 'Special Elite', cursive; font-size: 20px; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--water); }
+    .featured-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+    .featured-card { background: var(--card); border: 2px solid var(--water); border-radius: 10px; overflow: hidden; transition: all 0.25s; }
+    .featured-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .featured-card .feat-thumb { height: 200px; overflow: hidden; }
+    .featured-card .feat-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-card .feat-body { padding: 20px; }
+    .featured-card .feat-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 8px; display: block; }
+    .featured-card .feat-title { font-family: 'Special Elite', cursive; font-size: 18px; color: var(--white); margin-bottom: 8px; line-height: 1.4; display: block; }
+    .featured-card .feat-meta { font-size: 10px; color: var(--dim); }
+    .section-title { font-family: 'Special Elite', cursive; font-size: 22px; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--water); }
     .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
-    .post-card { background: var(--card); border: 1px solid var(--water); overflow: hidden; transition: all 0.2s; }
+    .post-card { background: var(--card); border: 1px solid var(--water); border-radius: 8px; overflow: hidden; transition: all 0.2s; }
     .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .post-thumb { height: 160px; overflow: hidden; }
+    .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
     .post-body { padding: 16px; }
-    .post-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; }
-    .post-title { font-size: 15px; color: var(--white); margin-bottom: 8px; line-height: 1.4; display: block; }
-    .post-excerpt { font-size: 12px; color: var(--dim); margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .post-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; display: block; }
+    .post-title { font-size: 14px; color: var(--white); margin-bottom: 8px; line-height: 1.4; display: block; }
+    .post-excerpt { font-size: 12px; color: var(--dim); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .post-meta { font-size: 10px; color: var(--dim); }
-    footer { text-align: center; padding: 30px; border-top: 1px solid var(--water); color: var(--dim); font-size: 13px; }
+    footer { text-align: center; padding: 40px; border-top: 1px solid var(--water); color: var(--dim); font-size: 13px; }
     .rss-btn { background: rgba(255,215,0,0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; font-size: 11px; border-radius: 3px; }
+    @media (max-width: 700px) {
+      .featured-wrap { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 34px; }
+      .solunar-bar { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
   <div class="top-bar">
-    <div class="brand"><img src="images/tagsoup-logo.png" alt="Tight Lines Tackle Box" style="height:40px;vertical-align:middle;"> Tight Lines Tackle Box</div>
+    <div class="brand">🐟 Tight Lines Tackle Box</div>
     <a href="rss.xml"><button class="rss-btn">📡 RSS</button></a>
   </div>
 
-  <div class="container">
-    <div class="hero">
-      <h1><img src="images/tagsoup-logo.png" alt="Tight Lines Tackle Box" style="height:40px;vertical-align:middle;"> Tight Lines Tackle Box</h1>
-      <p class="tagline">Daily fishing tips, tricks, and industry news</p>
-    </div>
+  <div class="hero">
+    <div class="logo-wrap">🐟</div>
+    <h1>TIGHT LINES</h1>
+    <p class="tagline">Your Daily Fishing Intelligence<span>Tips, tactics, and tackle — every day</span></p>
+  </div>
 
-    <!-- Solunar Section -->
+  <div class="container">
+
+    <!-- Solunar Bar -->
     <div class="solunar-section">
       <div class="solunar-header">
         <h2>🌙 Today's Solunar — April 25, 2026</h2>
         <a href="solunar.html" class="solunar-link">→ Full 30-Day Calendar</a>
       </div>
-
       <div class="solunar-bar">
         <div class="day-info">
           <div class="moon-info">🌓</div>
-          <div class="day-text">
-            First Quarter — 42% illuminated
-            <div class="date">Mountain Time • ~45°N, 110°W</div>
-          </div>
+          <div class="day-text">First Quarter — 42% illuminated<span class="date">Mountain Time • ~45°N, 110°W</span></div>
         </div>
         <div class="activity-badge act-excellent">★ 6.5 / 10</div>
       </div>
-
-      <div class="solunar-grid">
-        <div class="sol-card">
-          <div class="sol-label">🌅 Sunrise</div>
-          <div class="sol-icon">☀️</div>
-          <div class="sol-time">5:24 AM</div>
-          <div class="sol-label2">Dawn light begins</div>
-        </div>
-        <div class="sol-card major">
-          <div class="sol-label">🌙 Major — Moon Overhead</div>
-          <div class="sol-icon">🐟</div>
-          <div class="sol-time">3:18 AM</div>
-          <div class="sol-note">Peak feeding window</div>
-        </div>
-        <div class="sol-card major">
-          <div class="sol-label">🌑 Major — Moon Underfoot</div>
-          <div class="sol-icon">🎣</div>
-          <div class="sol-time">3:42 PM</div>
-          <div class="sol-note">Second peak window</div>
-        </div>
-        <div class="sol-card">
-          <div class="sol-label">🌅 Moonrise</div>
-          <div class="sol-icon">🌄</div>
-          <div class="sol-time">9:12 AM</div>
-          <div class="sol-label2">Minor window</div>
-        </div>
-        <div class="sol-card">
-          <div class="sol-label">🌃 Moonset</div>
-          <div class="sol-icon">🌆</div>
-          <div class="sol-time">9:18 PM</div>
-          <div class="sol-label2">Minor window</div>
-        </div>
-        <div class="sol-card">
-          <div class="sol-label">🌇 Sunset</div>
-          <div class="sol-icon">🌅</div>
-          <div class="sol-time">7:48 PM</div>
-          <div class="sol-label2">Evening bite possible</div>
-        </div>
-      </div>
-
       <div class="times-strip">
         <div class="time-chip"><div class="lbl">BEST BITES</div><div class="tm">3:18 AM</div></div>
         <div class="time-chip"><div class="lbl">ALSO GOOD</div><div class="tm">9:12 AM</div></div>
@@ -136,25 +102,47 @@
       </div>
     </div>
 
-    <div class="section-title">📖 Latest Tips & News</div>
-    <div class="posts-grid">
-
-    <div class="post-card">
-      <a href="posts/tips-april-25-2026.html">
-        <div class="post-thumb"><img src='posts/img-20260425.jpg' alt='Fisherman casting net on a foggy lake surrounded by lush mountains.' style='width:100%;height:160px;object-fit:cover;'></div>
-      </a>
-      <div class="post-body">
-        <div class="post-tag">Fishing Tips</div>
-        <a class="post-title" href="posts/tips-april-25-2026.html">Why Overcast Days Are the Best Days to Fish</a>
-        <p class="post-excerpt">Most anglers pack up when clouds roll in. Big mistake. Overcast skies diffuse sunlight, reducing visibility in the water...</p>
-        <div class="post-meta">📅 April 25, 2026</div>
+    <!-- Featured Section -->
+    <div class="section-title">🎯 Featured Tip</div>
+    <div class="featured-wrap">
+      <div class="featured-card">
+        <a href="posts/tips-april-25-2026.html">
+          <div class="feat-thumb"><img src="posts/img-20260425.jpg" alt="Overcast fishing" style="width:100%;height:200px;object-fit:cover;"></div>
+        </a>
+        <div class="feat-body">
+          <span class="feat-tag">Fishing Tips</span>
+          <a class="feat-title" href="posts/tips-april-25-2026.html">Why Overcast Days Are the Best Days to Fish</a>
+          <div class="feat-meta">📅 April 25, 2026 • 751 chars of insight</div>
+        </div>
+      </div>
+      <div class="featured-card" style="background:var(--card);display:flex;align-items:center;justify-content:center;padding:40px;text-align:center;">
+        <div>
+          <div style="font-size:48px;margin-bottom:12px;">📡</div>
+          <div style="font-family:'Special Elite',cursive;font-size:16px;color:var(--accent);margin-bottom:8px;">Stay Updated</div>
+          <p style="font-size:13px;color:var(--dim);margin-bottom:16px;">Get new fishing tips delivered fresh to your feed every day.</p>
+          <a href="rss.xml" style="background:var(--accent);color:var(--bg);padding:8px 20px;border-radius:5px;font-size:13px;font-weight:700;">Subscribe via RSS</a>
+        </div>
       </div>
     </div>
+
+    <div class="section-title">📖 Latest Tips & News</div>
+    <div class="posts-grid">
+      <div class="post-card">
+        <a href="posts/tips-april-25-2026.html">
+          <div class="post-thumb"><img src="posts/img-20260425.jpg" alt="Overcast fishing" style="width:100%;height:160px;object-fit:cover;"></div>
+        </a>
+        <div class="post-body">
+          <span class="post-tag">Fishing Tips</span>
+          <a class="post-title" href="posts/tips-april-25-2026.html">Why Overcast Days Are the Best Days to Fish</a>
+          <p class="post-excerpt">Most anglers pack up when clouds roll in. This is one of the most costly mistakes in fishing...</p>
+          <div class="post-meta">📅 April 25, 2026</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <footer>
-    <p><img src="images/tagsoup-logo.png" alt="Tight Lines Tackle Box" style="height:40px;vertical-align:middle;"> Tight Lines Tackle Box — Your source for outdoor fishing knowledge since 2024</p>
+    <p>🐟 Tight Lines Tackle Box — Your source for outdoor fishing knowledge since 2024</p>
   </footer>
 </body>
 </html>
