@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎣 Tight Lines Tackle Box — Daily Fishing Tips</title>
-  <meta name="description" content="Daily fishing tips, tricks, and industry news.">
-  <link rel="alternate" type="application/rss+xml" title="Tight Lines RSS" href="rss.xml">
+  <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root { --bg: #0a1628; --card: #0f2847; --water: #1a4a7a; --accent: #00d4aa; --gold: #ffd700; --white: #fff; --dim: #7a9cc6; --text: #c8dff5; }
@@ -15,12 +13,9 @@
     a:hover { color: var(--gold); }
     .top-bar { background: var(--card); border-bottom: 2px solid var(--water); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
     .top-bar .brand { font-family: 'Special Elite', cursive; font-size: 18px; color: var(--accent); }
-    .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-    .hero { text-align: center; padding: 30px 20px; margin-bottom: 30px; }
-    .hero h1 { font-family: 'Special Elite', cursive; font-size: 36px; color: var(--accent); margin-bottom: 8px; }
-    .hero .tagline { font-size: 15px; color: var(--dim); }
-    .section-title { font-family: 'Special Elite', cursive; font-size: 20px; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--water); }
-    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+    .section-title { font-family: 'Special Elite', cursive; font-size: 22px; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--water); }
+    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
     .post-card { background: var(--card); border: 1px solid var(--water); overflow: hidden; transition: all 0.2s; }
     .post-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .post-thumb { height: 160px; overflow: hidden; }
@@ -29,34 +24,30 @@
     .post-title { font-size: 15px; color: var(--white); margin-bottom: 8px; line-height: 1.4; display: block; }
     .post-excerpt { font-size: 12px; color: var(--dim); margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .post-meta { font-size: 10px; color: var(--dim); }
-    footer { text-align: center; padding: 30px; border-top: 1px solid var(--water); color: var(--dim); font-size: 13px; }
-    .rss-btn { background: rgba(255,215,0,0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; font-size: 11px; border-radius: 3px; }
+    footer { text-align: center; padding: 30px; border-top: 1px solid var(--water); color: var(--dim); font-size: 13px; margin-top: 40px; }
+    .solunar-strip { background: var(--card); border: 1px solid var(--water); border-radius: 8px; padding: 16px 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .solunar-strip .s-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+    .solunar-strip .s-item { font-size: 13px; color: var(--text); }
+    .solunar-strip .s-val { color: var(--gold); font-weight: 700; }
   </style>
 </head>
 <body>
   <div class="top-bar">
-    <div class="brand">🎣 Tight Lines Tackle Box</div>
-    <a href="rss.xml"><button class="rss-btn">📡 RSS</button></a>
+    <div class="brand">🐟 Tight Lines Tackle Box</div>
+    <a href="solunar.html">🌙 Solunar Calendar</a>
   </div>
   <div class="container">
-    <div class="hero">
-      <h1>🎣 Tight Lines Tackle Box</h1>
-      <p class="tagline">Daily fishing tips, tricks, and industry news</p>
+    <div class="section-title">Latest Fishing Tips</div>
+    <div class="solunar-strip">
+      <span class="s-label">🌙 Solunar Today</span>
+      <span class="s-item">Major <span class="s-val">4:29 AM &amp; 4:54 PM</span></span>
+      <span class="s-item">Minor <span class="s-val">10:42 AM &amp; 11:07 PM</span></span>
+      <span class="s-item">🌓 32% illuminated</span>
+      <span class="s-item">Sunrise <span class="s-val">5:25 AM</span> / Sunset <span class="s-val">7:14 PM</span></span>
+      <a href="solunar.html" style="margin-left:auto;font-size:12px;color:var(--accent);">Full Calendar →</a>
     </div>
-    <div class="section-title">📖 Latest Tips & News</div>
     <div class="posts-grid">
-
-    <div class="post-card">
-      <a href="posts/ice-april-26-2026.html">
-        <div class="post-thumb"><img src='../images/approved_6478099.jpg' alt='Fishing photography' style='width:100%;height:160px;object-fit:cover;'></div>
-      </a>
-      <div class="post-body">
-        <div class="post-tag">Ice Fishing</div>
-        <a class="post-title" href="posts/ice-april-26-2026.html">Late Ice Walleye: The Setup Most Anglers Miss</a>
-        <p class="post-excerpt">Late ice is the most underutilized opportunity in fishing. Most anglers have already put their gear away, but the last t...</p>
-        <div class="post-meta">📅 April 26, 2026</div>
-      </div>
-    </div>
+      
     <div class="post-card">
       <a href="posts/tips-april-25-2026.html">
         <div class="post-thumb"><img src='posts/img-20260425.jpg' alt='Fisherman casting net on a foggy lake surrounded by lush mountains.' style='width:100%;height:160px;object-fit:cover;'></div>
@@ -71,7 +62,7 @@
     </div>
   </div>
   <footer>
-    <p><img src="images/tagsoup-logo.png" alt="Tight Lines" style="height:28px;vertical-align:middle;"> Tight Lines Tackle Box — Your source for outdoor fishing knowledge since 2024</p>
+    <p>🐟 Tight Lines Tackle Box — Your source for outdoor fishing knowledge since 2024</p>
   </footer>
 </body>
 </html>
