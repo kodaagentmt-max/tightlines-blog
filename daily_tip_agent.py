@@ -355,6 +355,20 @@ def generate_index_html(posts):
 </html>"""
 
 
+# ─── Seasonal filter ───────────────────────────────────────────────────────────
+import datetime as _dt
+
+def _is_seasonal(tip):
+    """Return True if the tip is appropriate for the current month.
+    Ice fishing tips -> Nov through Mar only.
+    All other tips -> always OK.
+    """
+    tag = tip.get('tag', '')
+    if 'Ice' in tag or 'ice' in tip.get('category', ''):
+        month = datetime.now().month
+        return month in (11, 12, 1, 2, 3)
+    return True
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 def run():
     import urllib.parse
@@ -373,8 +387,9 @@ def run():
         print(f"  Updated RSS with today's solunar forecast")
         return
 
-    # Pick tip
-    tip = random.choice(FISHING_TIPS)
+    # Pick tip — filter out seasonal items that don't fit current conditions
+    valid_tips = [t for t in FISHING_TIPS if _is_seasonal(t)]
+    tip = random.choice(valid_tips)
     news = random.choice(NEWS_ITEMS)
     date_str = datetime.now().strftime("%B %d, %Y")
     slug = f"{tip['category']}-{date_str.replace(' ', '-').replace(',','').lower()}"
@@ -445,7 +460,34 @@ def _update_solunar_in_rss(all_posts):
     rss = _build_rss(all_posts, solunar)
     with open(BLOG_DIR / "rss.xml", 'w') as f:
         f.write(rss)
+    _add_media_to_rss(all_posts)
 
+def _add_media_to_rss(all_posts):
+    """Add media:content and enclosure tags to RSS items by reading og:image from each post HTML."""
+    import re
+    rss_path = BLOG_DIR / "rss.xml"
+    with open(rss_path) as f:
+        content = f.read()
+    item_pat = re.compile(r'(<item>)(.*?)(</item>)', re.DOTALL)
+    def fix_item(m):
+        item = m.group(0)
+        slug_m = re.search(r'<link>https://tightlinesblog\.com/posts/([^<]+)</link>', item)
+        if not slug_m:
+            return item
+        post_path = POSTS_DIR / f"{slug_m.group(1)}.html"
+        if not post_path.exists():
+            return item
+        html_content = post_path.read_text()
+        img_m = re.search(r'<meta property="og:image" content="([^"]+)"', html_content)
+        if not img_m:
+            return item
+        img_url = img_m.group(1)
+        media = f'\n      <enclosure url="{img_url}" type="image/jpeg" length="100000"/>\n      <media:content url="{img_url}" type="image/jpeg" medium="image"/>'
+        item = re.sub(r'(<guid[^>]+>.*?</guid>)', r'\1' + media, item, flags=re.DOTALL)
+        return item
+    content = item_pat.sub(fix_item, content)
+    with open(rss_path, 'w') as f:
+        f.write(content)
 
 if __name__ == "__main__":
     run()
