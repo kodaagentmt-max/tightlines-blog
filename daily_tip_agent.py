@@ -6,13 +6,98 @@ Run daily via cron — outputs to projects/tightlines-blog/posts/
 """
 
 import html
-import json, os, random, urllib.request
-from datetime import datetime
+import json, os, random, urllib.request, math
+from datetime import datetime, timedelta
 from pathlib import Path
 
 BLOG_DIR = Path("/home/kodaagentmt/.openclaw/workspace/projects/tightlines-blog")
 POSTS_DIR = BLOG_DIR / "posts"
 IMAGES_DIR = BLOG_DIR / "images"
+
+# --- Solunar Calculator ---
+MOON_CYCLE = 29.53058867
+KNOWN_NEW_MOON = datetime(2000, 1, 6)
+
+def get_moon_phase(date):
+    days = (date - KNOWN_NEW_MOON).total_seconds() / 86400
+    return (days % MOON_CYCLE) / MOON_CYCLE
+
+def moon_name(phase):
+    names = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘']
+    return names[int(phase * 8) % 8]
+
+def fmt(h):
+    hh = int(h)
+    mm = int((h - hh) * 60)
+    suffix = 'AM' if hh < 12 else 'PM'
+    hh = hh % 12 or 12
+    return f"{hh}:{mm:02d} {suffix}"
+
+def lunar_transit(date, lon):
+    days = (date - KNOWN_NEW_MOON).total_seconds() / 86400
+    return (20 + ((days % MOON_CYCLE) / MOON_CYCLE) * 24 - lon / 15) % 24
+
+def sunrise_sunset(lat, lon, date):
+    lat_r = lat * math.pi / 180
+    doy = (date - datetime(date.year, 1, 1)).days
+    decl = 23.45 * math.sin(2 * math.pi * (284 + doy) / 365) * math.pi / 180
+    cos_h = -math.tan(lat_r) * math.tan(decl)
+    if cos_h < -1:
+        h_deg = 180
+    elif cos_h > 1:
+        h_deg = 0
+    else:
+        h_deg = math.acos(cos_h) * 180 / math.pi
+    noon = 12 - lon / 15
+    tz = -7  # MDT
+    sr = (noon - h_deg / 15 + tz) % 24
+    ss = (noon + h_deg / 15 + tz) % 24
+    return sr, ss
+
+def solunar_forecast():
+    """Return today's solunar forecast dict."""
+    today = datetime.now()
+    lat, lon = 45.5, -110.0
+    phase = get_moon_phase(today)
+    sr, ss = sunrise_sunset(lat, lon, today)
+    lt = lunar_transit(today, lon)
+    tz = -7
+    major = sorted([(lt + tz) % 24, (lt + 12.42 + tz) % 24])
+    minor = sorted([(major[0] + 6.21) % 24, (major[1] + 6.21) % 24])
+    illum = round(abs(phase - 0.5) * 200)
+    return {
+        'date': today.strftime('%B %d, %Y'),
+        'moon': moon_name(phase),
+        'illum': illum,
+        'sr': fmt(sr),
+        'ss': fmt(ss),
+        'major1': fmt(major[0]),
+        'major2': fmt(major[1]),
+        'minor1': fmt(minor[0]),
+        'minor2': fmt(minor[1]),
+    }
+
+def solunar_rss_item(sol):
+    """Format today's solunar data as an RSS <item>."""
+    date_str = datetime.now().strftime("%a, %d %b %Y %H:%M:%S MDT")
+    desc = (
+        f"{sol['moon']} {sol['illum']}% illuminated. "
+        f"Major feeding: {sol['major1']} & {sol['major2']}. "
+        f"Minor feeding: {sol['minor1']} & {sol['minor2']}. "
+        f"Sunrise {sol['sr']} / Sunset {sol['ss']}. "
+        f"Data for ~45°N, 110°W (Mountain Time)."
+    )
+    slug = datetime.now().strftime("solunar-%Y%m%d")
+    return (
+        f'\n    <item>'
+        f'\n      <title>Solunar Forecast — {sol["date"]}</title>'
+        f'\n      <link>https://kodaagentmt-max.github.io/tightlines-blog/solunar.html</link>'
+        f'\n      <guid isPermaLink="true">https://tightlinesblog.com/posts/{slug}</guid>'
+        f'\n      <pubDate>{date_str}</pubDate>'
+        f'\n      <description><![CDATA[{desc}]]></description>'
+        f'\n    </item>'
+    )
+
 PEXELS_KEY = "YkKkFXmfk334l9uKq8iPBnzoaFcvJOTbnAhO1awjRudPTOfJWX1BAKZE"
 
 # Pre-approved image library — vetted by KC
@@ -280,9 +365,12 @@ def run():
     index_file = BLOG_DIR / "posts.json"
     all_posts = json.load(open(index_file)) if index_file.exists() else []
 
-    # Skip if posted today
+    # Skip if posted today — but always update RSS with today's solunar data
     if any(p.get('id') == today_id for p in all_posts):
-        print(f"[{datetime.now()}] Already posted today ({today_id}). Skipping.")
+        print(f"[{datetime.now()}] Already posted today ({today_id}). Skipping new tip.")
+        # Still update RSS with today's solunar forecast
+        _update_solunar_in_rss(all_posts)
+        print(f"  Updated RSS with today's solunar forecast")
         return
 
     # Pick tip
@@ -323,14 +411,24 @@ def run():
         f.write(index_html)
     print(f"  📋 Updated index.html with {len(all_posts)} posts")
 
-    # Generate RSS
-    items_xml = ""
+    # Update RSS with today's solunar + posts
+    _update_solunar_in_rss(all_posts)
+    print(f"  📡 Updated RSS with today's solunar forecast")
+
+    print(f"\n[{datetime.now()}] === DONE ===")
+    print(f"Post: {tip['title']}")
+    if photo:
+        print(f"Photo: {photo['alt']} (by {photo['photographer']})")
+
+
+def _build_rss(all_posts, solunar):
+    """Build full RSS XML string with solunar item at top and posts below."""
+    solunar_item = solunar_rss_item(solunar)
+    items_xml = solunar_item
     for p in all_posts[:10]:
-        import urllib.parse
         pub = datetime.fromisoformat(p.get('date_iso', datetime.now().isoformat())).strftime("%a, %d %b %Y %H:%M:%S MDT")
         items_xml += f"\n    <item><title>{html.escape(p['title'])}</title><link>https://tightlinesblog.com/posts/{p['slug']}</link><guid>https://tightlinesblog.com/posts/{p['id']}</guid><pubDate>{pub}</pubDate><description>{html.escape(p['body'][:200])}</description></item>"
-
-    rss = f"""<?xml version="1.0" encoding="UTF-8"?>
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>Tight Lines Tackle Box — Daily Fishing Tips</title>
@@ -340,13 +438,17 @@ def run():
 {items_xml}
   </channel>
 </rss>"""
+
+def _update_solunar_in_rss(all_posts):
+    """Re-write RSS with fresh solunar item, keeping existing post items."""
+    solunar = solunar_forecast()
+    rss = _build_rss(all_posts, solunar)
     with open(BLOG_DIR / "rss.xml", 'w') as f:
         f.write(rss)
 
-    print(f"\n[{datetime.now()}] === DONE ===")
-    print(f"Post: {tip['title']}")
-    if photo:
-        print(f"Photo: {photo['alt']} (by {photo['photographer']})")
+
+if __name__ == "__main__":
+    run()
 
 
 if __name__ == "__main__":
